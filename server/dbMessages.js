@@ -11,3 +11,4 @@ const whatsappschema = mongoose.Schema({
 //collection
 export default mongoose.model('messagecontents', whatsappschema)
 
+

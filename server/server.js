@@ -4,6 +4,7 @@ import express from 'express'
 import mongoose from 'mongoose';
 import Messages from './dbMessages.js'
 import Pusher from 'pusher';
+import cors from 'cors'
 
 //app config
  const app = express();
@@ -33,7 +34,8 @@ import Pusher from 'pusher';
               const messageDetails = change.fullDocument;
               pusher.trigger('messages', 'inserted', {
                   name: messageDetails.name ,
-                  message: messageDetails.message
+                  message: messageDetails.message,
+                  timestamp: messageDetails.timestamp
               });
           } else {
               console.log('Error occurred when triggering pusher');
@@ -44,6 +46,9 @@ import Pusher from 'pusher';
 
 //middleware
 app.use(express.json());
+app.use(cors());
+
+
 
 //DB Config
 const connection_url = 'mongodb+srv://thuo:EQj2Oy9FiJosow9D@cluster0.fedhl.mongodb.net/WhatsApp-Clone?retryWrites=true&w=majority'
