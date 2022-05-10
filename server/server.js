@@ -35,7 +35,9 @@ import cors from 'cors'
               pusher.trigger('messages', 'inserted', {
                   name: messageDetails.name ,
                   message: messageDetails.message,
-                  timestamp: messageDetails.timestamp
+                  timestamp: messageDetails.timestamp,
+                  received: messageDetails.received
+            
               });
           } else {
               console.log('Error occurred when triggering pusher');
@@ -47,7 +49,6 @@ import cors from 'cors'
 //middleware
 app.use(express.json());
 app.use(cors());
-
 
 
 //DB Config
